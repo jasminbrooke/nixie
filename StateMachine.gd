@@ -1,6 +1,4 @@
 extends Node
-
-@onready var player = get_node("../../../World/Nixie")
 @export var initial_state : State
 
 var current_state : State

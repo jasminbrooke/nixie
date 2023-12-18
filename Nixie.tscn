@@ -1,7 +1,11 @@
-[gd_scene load_steps=24 format=3 uid="uid://fk8v328oreta"]
+[gd_scene load_steps=28 format=3 uid="uid://fk8v328oreta"]
 
 [ext_resource type="Script" path="res://nixiescript.gd" id="1_ckuxg"]
 [ext_resource type="Script" path="res://RayCast3D.gd" id="2_eraaa"]
+[ext_resource type="Script" path="res://StateMachine.gd" id="3_njc2d"]
+[ext_resource type="Script" path="res://nixiesneak.gd" id="4_iqwab"]
+[ext_resource type="Script" path="res://nixiewalk.gd" id="5_vdhon"]
+[ext_resource type="Script" path="res://nixierun.gd" id="6_yxsgv"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ceymc"]
 resource_name = "Material.001"
@@ -1243,7 +1247,7 @@ input_4/auto_advance = false
 input_4/reset = true
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_pxp7a"]
-graph_offset = Vector2(-340.19, -396.658)
+graph_offset = Vector2(-182.758, -58.7421)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_a6501")
 nodes/Animation/position = Vector2(-120, -560)
 "nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_v8xag")
@@ -1582,3 +1586,16 @@ libraries = {
 [node name="Label3D" type="Label3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.63234, -0.714748)
 billboard = 2
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("3_njc2d")
+initial_state = NodePath("nixiewalk")
+
+[node name="nixiesneak" type="Node" parent="StateMachine"]
+script = ExtResource("4_iqwab")
+
+[node name="nixiewalk" type="Node" parent="StateMachine"]
+script = ExtResource("5_vdhon")
+
+[node name="nixierun" type="Node" parent="StateMachine"]
+script = ExtResource("6_yxsgv")

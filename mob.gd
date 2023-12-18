@@ -9,6 +9,7 @@ class_name bunny
 @onready var scent = %scent
 
 func _ready():
+	print(statemachine)
 	if label:
 		label.text = str(statemachine.current_state)
 

@@ -9,6 +9,9 @@ class_name bunnyidle
 @export var wander_time : float
 @export var velocity = Vector3.ZERO
 
+func _on_bunny_picked_up():
+	Transitioned.emit(self, "carried")  # Emit the transition signal for "carried" state
+
 func randomize_wander():
 	move_direction = Vector3(randf() * 2 - 1, 0, randf() * 2 - 1).normalized()
 	wander_time = randi_range(4, 6)
@@ -31,4 +34,3 @@ func physics_update(_delta: float):
 		bun.look_at(bun.global_transform.origin + move_direction, Vector3.UP)
 		bun.velocity = move_direction * speed
 		bun.move_and_slide()
-		

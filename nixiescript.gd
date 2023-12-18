@@ -4,25 +4,27 @@ signal bark
 signal bunny_picked_up
 signal bunny_put_down
 
+@onready var statemachine = $StateMachine
 @onready var bunny_attachment_point = $Armature/Skeleton3D/BoneAttachment3D/BunnyAttachmentPoint
 @onready var armature = $Armature
 @onready var spring_arm_pivot = $SpringArmPivot
 @onready var spring_arm = $SpringArmPivot/SpringArm3D
 @onready var anim_tree = $AnimationTree
 @onready var nest = get_node("../Nest")  # Load the scene resource
-var SPEED = 6
 const LERP_VAL = .15
 const BUNNY_INTERACTION_DISTANCE = 2  # Adjust this value as needed
 const JUMP_VELOCITY = 5
 var default_layer = 0
 @onready var carrying_bunny: CharacterBody3D = null
-#@onready var target_bunny: CharacterBody3D = null
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var shapecast = %ShapeCast3D
 @onready var label = $Label3D
 var bark_count = 0
+@export var SPEED = 6
 
 func _ready():
+	if label:
+		label.text = str(statemachine.current_state)
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _unhandled_input(event):
@@ -50,16 +52,6 @@ func _physics_process(_delta):
 	# Handle Jump.
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
-		
-	if Input.is_action_pressed("run"):
-		SPEED = 8
-	else:
-		SPEED = 6
-		
-	if Input.is_action_pressed("sneak"):
-		SPEED = 2
-	else:
-		SPEED = 6
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
@@ -85,7 +77,6 @@ func _physics_process(_delta):
 		var target_bunny: CharacterBody3D = null
 		if carrying_bunny == null and shapecast.is_colliding():
 			target_bunny = shapecast.get_collider(0)
-		print(target_bunny)
 		toggle_bunny_state(target_bunny)
 			
 func toggle_bunny_state(target_bunny):
@@ -98,11 +89,8 @@ func toggle_bunny_state(target_bunny):
 				
 func pick_up_bunny(target_bunny): 
 	carrying_bunny = target_bunny
-	print("pick up:", carrying_bunny, target_bunny)
 	self.emit_signal("bunny_picked_up")  # Emit the picked_up_signal
-	print("Bunny picked up!")
 		
 func put_down_bunny():
-	print("Bunny put down!", carrying_bunny)
 	self.emit_signal("bunny_put_down")
 	carrying_bunny = null

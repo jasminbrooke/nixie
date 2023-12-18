@@ -26,7 +26,6 @@ func enter():
 	scaredscent.emitting = true
 	if not player.is_connected("bunny_picked_up", _on_bunny_picked_up):
 		player.bunny_picked_up.connect(_on_bunny_picked_up)
-	player = get_node("/root/World/Nixie")
 	if anim_tree:
 		anim_tree.active = true  # Activate the animation tree
 		anim_tree.set("parameters/Transition/transition_request", "run")
@@ -34,6 +33,7 @@ func enter():
 func physics_update(_delta: float):
 	var distance_to_player = bun.global_position.distance_to(player.global_position)
 	var direction = player.global_position - bun.global_position
+	var nixiestate = player.statemachine.current_state
 	if distance_to_player > 10:
 		Transitioned.emit(self, "idle")
 	else:
