@@ -1,0 +1,82 @@
+[gd_scene load_steps=11 format=3 uid="uid://cyf35b3nmwgy3"]
+
+[ext_resource type="Shader" uid="uid://bgf76pf28q3au" path="res://Shaders/visualwater.tres" id="1_ionfu"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dtwgt"]
+render_priority = 0
+shader = ExtResource("1_ionfu")
+shader_parameter/ColorParameter = Color(0, 0.266667, 0.533333, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_l8478"]
+material = SubResource("ShaderMaterial_dtwgt")
+size = Vector2(10, 10)
+subdivide_width = 20
+subdivide_depth = 20
+
+[sub_resource type="BoxMesh" id="BoxMesh_sega5"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tilfd"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_yjqo3"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_72hpt"]
+
+[sub_resource type="PrismMesh" id="PrismMesh_w8r1b"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8wu2v"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4vj41"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_l8478")
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+transform = Transform3D(0.254686, 0.967024, 0, -0.967024, 0.254686, 0, 0, 0, 1, 0, -0.312567, 0)
+gravity_scale = -5.311
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="RigidBody3D"]
+transform = Transform3D(0.0764405, -0.997074, 0, 0.997074, 0.0764405, 0, 0, 0, 1, 0.137366, -0.0361781, -1.29476)
+mesh = SubResource("BoxMesh_sega5")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+transform = Transform3D(0.0764406, -0.997074, 0, 0.997074, 0.0764406, 0, 0, 0, 1, 0.137366, -0.0361781, -1.29476)
+shape = SubResource("BoxShape3D_tilfd")
+
+[node name="RigidBody3D2" type="RigidBody3D" parent="."]
+transform = Transform3D(0.254686, 0.967024, 0, -0.967024, 0.254686, 0, 0, 0, 1, 0, -0.312567, 0)
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="RigidBody3D2"]
+mesh = SubResource("CapsuleMesh_yjqo3")
+skeleton = NodePath("../../MeshInstance3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D2"]
+transform = Transform3D(1, 1.49012e-08, 0, -1.49012e-08, 1, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_72hpt")
+
+[node name="RigidBody3D3" type="RigidBody3D" parent="."]
+transform = Transform3D(0.254686, 0.967024, 0, -0.967024, 0.254686, 0, 0, 0, 1, 0, -0.312567, 0)
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="RigidBody3D3"]
+transform = Transform3D(0.931234, -0.364422, 0, 0.364422, 0.931234, 0, 0, 0, 1, -0.165494, 0.0435862, -2.80723)
+mesh = SubResource("PrismMesh_w8r1b")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D3"]
+transform = Transform3D(1, 1.49012e-08, 0, -1.49012e-08, 1, 0, 0, 0, 1, 0, 0, -2.94883)
+shape = SubResource("CapsuleShape3D_8wu2v")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.164445, 0.986386, 0, -0.986386, -0.164445, 0, 7.8406, 0.969786)
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+gravity_space_override = 1
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_4vj41")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.0598561, 0.513886, -0.855768, -0.0358558, 0.857859, 0.512633, 0.997563, 0, 0.0697739, -7.81772, 2.4337, 0)

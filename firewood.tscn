@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://c4mmaso67kdc7"]
+
+[ext_resource type="PackedScene" uid="uid://g47hf4jufcc1" path="res://Models/firewood4.glb" id="1_1x6rc"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="firewood4" parent="." instance=ExtResource("1_1x6rc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.300773, 0, -0.303981)
+
+[node name="Cylinder_058" parent="firewood4" index="1"]
+transform = Transform3D(0, -0.660409, 2.07162e-08, 0.0127519, 7.87269e-08, 0.347178, 0.271682, -3.93634e-08, -0.0162954, 1.26001, 1.18765, -3.60175)
+
+[editable path="firewood4"]

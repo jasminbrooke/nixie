@@ -1,0 +1,38 @@
+[gd_scene load_steps=4 format=3 uid="uid://bijs5ntcfec4o"]
+
+[ext_resource type="PackedScene" uid="uid://b11qxd00hwv2s" path="res://111.glb" id="1_3o14n"]
+[ext_resource type="Script" path="res://nixiescript.gd" id="2_qen6w"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_ug874"]
+
+[node name="Player" instance=ExtResource("1_3o14n")]
+script = ExtResource("2_qen6w")
+
+[node name="Skeleton3D" parent="Armature" index="0"]
+bones/0/rotation = Quaternion(-0.00575436, 0.0109299, 0.999132, 0.0397712)
+bones/1/rotation = Quaternion(-0.0596415, 0.0370693, 0.465321, 0.882352)
+bones/2/rotation = Quaternion(0.0632781, -0.010875, -0.871052, 0.486976)
+bones/3/rotation = Quaternion(0.679059, -0.201032, 0.678055, 0.196738)
+bones/4/rotation = Quaternion(0.657196, -0.000307027, 0.00178851, 0.753717)
+bones/5/rotation = Quaternion(-0.723148, 0.000724247, 0.000685668, 0.690692)
+bones/6/rotation = Quaternion(-0.311493, -0.633678, -0.335037, 0.623839)
+bones/7/rotation = Quaternion(-0.038733, 0.140601, -0.274899, 0.950348)
+bones/8/rotation = Quaternion(0.189303, 0.06538, -0.0112811, 0.979675)
+bones/9/rotation = Quaternion(0.424702, 0.0182666, -0.0456563, 0.903997)
+bones/12/rotation = Quaternion(0.00666217, -0.00817773, -0.997944, 0.0632139)
+bones/13/rotation = Quaternion(-0.0608831, 0.0401152, 0.520475, 0.850759)
+bones/14/rotation = Quaternion(0.0535755, -0.0224756, -0.680152, 0.730765)
+bones/15/rotation = Quaternion(0.65279, -0.27797, 0.651264, 0.269172)
+bones/16/rotation = Quaternion(0.485375, -0.0010192, 0.00254653, 0.874302)
+bones/17/rotation = Quaternion(-0.619337, 0.00110377, 0.000746053, 0.785124)
+bones/18/rotation = Quaternion(-0.512603, 0.488411, 0.503934, 0.494715)
+bones/19/rotation = Quaternion(-0.0702381, 0.00143972, -0.00303647, 0.997525)
+bones/22/rotation = Quaternion(0.636016, 0.00296177, 0.00130995, 0.771669)
+bones/23/rotation = Quaternion(-0.586486, 0.03513, 0.0158286, 0.809042)
+bones/27/rotation = Quaternion(-0.783292, 0.576634, -0.209923, 0.0993984)
+bones/31/rotation = Quaternion(-0.117658, -0.011868, -0.812717, 0.570532)
+
+[node name="AnimationTree" type="AnimationTree" parent="." index="2"]
+tree_root = SubResource("AnimationNodeBlendTree_ug874")
+anim_player = NodePath("../AnimationPlayer")
+active = true

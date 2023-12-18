@@ -1,0 +1,44 @@
+[gd_scene load_steps=9 format=3 uid="uid://d3yw84crhjjil"]
+
+[ext_resource type="SphereMesh" uid="uid://bx0ljp7dh42k0" path="res://1.tres" id="1_7eh0s"]
+
+[sub_resource type="Curve" id="Curve_yig6q"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_6aaxq"]
+curve = SubResource("Curve_yig6q")
+
+[sub_resource type="Gradient" id="Gradient_wpsvo"]
+offsets = PackedFloat32Array(0, 0.453846)
+colors = PackedColorArray(0, 0, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ojlus"]
+gradient = SubResource("Gradient_wpsvo")
+
+[sub_resource type="Curve" id="Curve_cdpw4"]
+_data = [Vector2(0, 0.285714), 0.0, 0.0, 0, 0, Vector2(0.189873, 0.703297), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_3gje5"]
+curve = SubResource("Curve_cdpw4")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_f477o"]
+particle_flag_rotate_y = true
+emission_shape = 2
+emission_sphere_radius = 1.0
+gravity = Vector3(1, 5, -5)
+scale_curve = SubResource("CurveTexture_3gje5")
+color = Color(0.286275, 0.380392, 1, 0.176471)
+color_ramp = SubResource("GradientTexture1D_ojlus")
+alpha_curve = SubResource("CurveTexture_6aaxq")
+
+[node name="Node3D" type="Node3D"]
+
+[node name="scent" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, -9.9476e-14, 1.95399e-14, 1.42109e-14, 1, -1.49012e-08, 8.88178e-15, 1.49012e-08, 1, -0.478114, -0.639821, 3.69812)
+amount = 20
+preprocess = 2.0
+speed_scale = 0.5
+process_material = SubResource("ParticleProcessMaterial_f477o")
+draw_pass_1 = ExtResource("1_7eh0s")

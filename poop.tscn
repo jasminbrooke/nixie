@@ -1,0 +1,98 @@
+[gd_scene load_steps=12 format=3 uid="uid://dm2y53acc6ql4"]
+
+[ext_resource type="Script" path="res://statr.gd" id="1_1yty7"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_8va5m"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_ltpjb"]
+sky_material = SubResource("ProceduralSkyMaterial_8va5m")
+
+[sub_resource type="Environment" id="Environment_h3soh"]
+background_mode = 2
+sky = SubResource("Sky_ltpjb")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="PrismMesh" id="PrismMesh_k0oc8"]
+size = Vector3(5, 5, 5)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_vmawc"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mmhk5"]
+size = Vector3(50, 20, 10)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_enn14"]
+size = Vector2(50, 10)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_3fwss"]
+bounce = 0.85
+absorbent = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_1b24l"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_yu7uk"]
+
+[node name="Node3D" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 0.994944, -0.100431, 0, 0.100431, 0.994944, 0, 0, 0)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_h3soh")
+
+[node name="RigidBody3D2" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, -1.49012e-08, 0, 1.49012e-08, 1, 1.47506, 3.70716, -0.30518)
+axis_lock_linear_z = true
+axis_lock_angular_z = true
+
+[node name="boat" type="MeshInstance3D" parent="RigidBody3D2"]
+transform = Transform3D(0.999999, 0, 0, 0, 0.999999, 0, 0, 0, 1, 0, 4.65822, 1.23508)
+mesh = SubResource("PrismMesh_k0oc8")
+skeleton = NodePath("../../water")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, -5.21541e-08, 0, 5.21541e-08, 1, 0, 4.68853, 1.1074)
+shape = SubResource("SphereShape3D_vmawc")
+
+[node name="Node2" type="Node" parent="."]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Node2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.83005, 0)
+script = ExtResource("1_1yty7")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Node2/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.1868, -5.71071, 2.01934)
+shape = SubResource("BoxShape3D_mmhk5")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Node2/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.741221, 9.61483, 11.282)
+shape = SubResource("BoxShape3D_mmhk5")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Node2/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.921588, 10.6642, -7.21766)
+shape = SubResource("BoxShape3D_mmhk5")
+
+[node name="plane" type="MeshInstance3D" parent="Node2/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.2441, 4.63103, 2.00158)
+mesh = SubResource("PlaneMesh_enn14")
+skeleton = NodePath("../../..")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.433348, -0.486101, 0.758891, -0.0222144, 0.836047, 0.548208, -0.900953, -0.254423, 0.351501, 32.9081, 8.54511, 5.49169)
+
+[node name="water" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.994943, 0.100431, 0, -0.100431, 0.994943, -4.64054, 9.23853, 0.521726)
+physics_material_override = SubResource("PhysicsMaterial_3fwss")
+constant_force = Vector3(1, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="water"]
+transform = Transform3D(1, 0, 0, 0, 1, 2.22045e-15, 0, -2.22045e-15, 1, 0, 0, 0)
+mesh = SubResource("SphereMesh_1b24l")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="water"]
+transform = Transform3D(1, 0, 0, 0, 1, 4.44089e-16, 0, -4.44089e-16, 1, 0, 0, 0)
+shape = SubResource("SphereShape3D_yu7uk")

@@ -1,0 +1,56 @@
+[gd_scene load_steps=5 format=3 uid="uid://bwiy0m250qiq3"]
+
+[sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_m03u1"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_351kb"]
+animation = &"pickup2"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_nsv4o"]
+animation = &"walk"
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_dw3y7"]
+graph_offset = Vector2(186.045, -92.111)
+nodes/Add2/node = SubResource("AnimationNodeAdd2_m03u1")
+nodes/Add2/position = Vector2(920, 20)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_nsv4o")
+nodes/Animation/position = Vector2(620, 0)
+"nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_351kb")
+"nodes/Animation 2/position" = Vector2(620, 160)
+nodes/output/position = Vector2(1180, 60)
+node_connections = [&"Add2", 0, &"Animation", &"Add2", 1, &"Animation 2", &"output", 0, &"Add2"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="NewNixieExperimentalModel" parent="."]
+
+[node name="Skeleton3D" parent="NewNixieExperimentalModel/Armature" index="0"]
+bones/0/rotation = Quaternion(-0.00777228, 0.00775751, 0.999629, -0.0249178)
+bones/1/rotation = Quaternion(-0.0602887, 0.0371551, 0.476422, 0.87636)
+bones/2/rotation = Quaternion(0.0634967, -0.0107337, -0.873736, 0.48212)
+bones/3/rotation = Quaternion(0.677023, -0.207755, 0.676086, 0.203433)
+bones/4/rotation = Quaternion(0.649884, -0.000317501, 0.00174867, 0.760031)
+bones/5/rotation = Quaternion(-0.722042, 0.000729982, 0.000656481, 0.691849)
+bones/6/rotation = Quaternion(-0.311493, -0.633678, -0.335037, 0.623839)
+bones/7/rotation = Quaternion(0.157359, -0.0967575, 0.178821, 0.966385)
+bones/8/rotation = Quaternion(0.113908, -0.0649882, 0.216087, 0.967527)
+bones/9/rotation = Quaternion(0.159435, -0.0241659, 0.0617974, 0.984976)
+bones/12/rotation = Quaternion(-0.00877204, 0.00177421, 0.979171, -0.202841)
+bones/13/rotation = Quaternion(-0.0588407, 0.0398242, 0.508262, 0.858267)
+bones/14/rotation = Quaternion(0.051435, -0.0240097, -0.6459, 0.761309)
+bones/15/rotation = Quaternion(0.650769, -0.282869, 0.649147, 0.274033)
+bones/16/rotation = Quaternion(0.507248, -0.00100562, 0.00269592, 0.861796)
+bones/17/rotation = Quaternion(-0.643388, 0.00117379, 0.000818652, 0.765539)
+bones/18/rotation = Quaternion(0.511658, -0.489359, -0.503178, -0.495525)
+bones/19/rotation = Quaternion(-0.070906, 0.00143452, -0.00302629, 0.997477)
+bones/22/rotation = Quaternion(0.516009, 0.00064581, 0.00336914, 0.856576)
+bones/23/rotation = Quaternion(-0.658802, 0.0672832, 0.0299695, 0.748702)
+bones/27/rotation = Quaternion(0.810439, -0.506611, 0.284948, -0.0730704)
+bones/31/rotation = Quaternion(-0.163704, -0.0742896, -0.841908, 0.508796)
+
+[node name="AnimationTree" type="AnimationTree" parent="NewNixieExperimentalModel"]
+tree_root = SubResource("AnimationNodeBlendTree_dw3y7")
+anim_player = NodePath("../AnimationPlayer")
+active = true
+parameters/Add2/add_amount = 0.92
+
+[editable path="NewNixieExperimentalModel"]
