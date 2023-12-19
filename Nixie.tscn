@@ -3,9 +3,9 @@
 [ext_resource type="Script" path="res://nixiescript.gd" id="1_ckuxg"]
 [ext_resource type="Script" path="res://RayCast3D.gd" id="2_eraaa"]
 [ext_resource type="Script" path="res://StateMachine.gd" id="3_njc2d"]
-[ext_resource type="Script" path="res://nixiesneak.gd" id="4_iqwab"]
-[ext_resource type="Script" path="res://nixiewalk.gd" id="5_vdhon"]
-[ext_resource type="Script" path="res://nixierun.gd" id="6_yxsgv"]
+[ext_resource type="Script" path="res://States/nixiesneak.gd" id="4_jwpqg"]
+[ext_resource type="Script" path="res://States/nixiewalk.gd" id="5_unqwx"]
+[ext_resource type="Script" path="res://States/nixierun.gd" id="6_mc4v5"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ceymc"]
 resource_name = "Material.001"
@@ -1592,10 +1592,10 @@ script = ExtResource("3_njc2d")
 initial_state = NodePath("nixiewalk")
 
 [node name="nixiesneak" type="Node" parent="StateMachine"]
-script = ExtResource("4_iqwab")
+script = ExtResource("4_jwpqg")
 
 [node name="nixiewalk" type="Node" parent="StateMachine"]
-script = ExtResource("5_vdhon")
+script = ExtResource("5_unqwx")
 
 [node name="nixierun" type="Node" parent="StateMachine"]
-script = ExtResource("6_yxsgv")
+script = ExtResource("6_mc4v5")

@@ -9,9 +9,6 @@ class_name bunnyidle
 @export var wander_time : float
 @export var velocity = Vector3.ZERO
 
-func _on_bunny_picked_up():
-	Transitioned.emit(self, "carried")  # Emit the transition signal for "carried" state
-
 func randomize_wander():
 	move_direction = Vector3(randf() * 2 - 1, 0, randf() * 2 - 1).normalized()
 	wander_time = randi_range(4, 6)
@@ -27,10 +24,17 @@ func update(delta: float):
 		randomize_wander()
 		
 func physics_update(_delta: float):
+	bun.look_at(bun.global_transform.origin + move_direction, Vector3.UP)
+	bun.velocity = move_direction * speed
+	bun.move_and_slide()
+	var nixiestate = player.statemachine.current_state
 	var distance_to_player = bun.global_position.distance_to(player.global_position)
-	if distance_to_player < 6:
+	if distance_to_player < 6 and not nixiestate is nixiesneak:
 		Transitioned.emit(self, "scared")
-	else:
-		bun.look_at(bun.global_transform.origin + move_direction, Vector3.UP)
-		bun.velocity = move_direction * speed
-		bun.move_and_slide()
+	if distance_to_player < 6 and nixiestate is nixiesneak:
+		if not player.is_connected("bunny_picked_up", _on_bunny_picked_up):
+				player.bunny_picked_up.connect(_on_bunny_picked_up)
+		
+func _on_bunny_picked_up():
+	Transitioned.emit(self, "carried")  # Emit the transition signal for "carried" state
+	

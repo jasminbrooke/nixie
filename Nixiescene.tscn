@@ -153,33 +153,33 @@ transform = Transform3D(1.12459, 0, 0, 0, 1.12459, 0, 0, 0, 1.12459, 97.2537, -1
 transform = Transform3D(1, 0, 0, 0, 0.999848, 0.0174524, 0, -0.0174524, 0.999848, -14.4423, 0.1, 11.9923)
 
 [node name="Skeleton3D" parent="Nixie/Armature" index="0"]
-bones/0/rotation = Quaternion(-0.00152409, 0.00769571, 0.981602, 0.190776)
-bones/1/rotation = Quaternion(-0.04189, 0.0329186, 0.335535, 0.94052)
-bones/2/rotation = Quaternion(0.0467001, -0.0242583, -0.591411, 0.804652)
-bones/3/rotation = Quaternion(0.687701, -0.169229, 0.686556, 0.164528)
-bones/4/rotation = Quaternion(0.766137, -0.000306838, 0.00203133, 0.642674)
-bones/5/rotation = Quaternion(-0.780494, 0.000872615, 0.000798806, 0.625163)
-bones/7/rotation = Quaternion(0.0237235, 0.0382011, -0.160081, 0.986079)
-bones/8/rotation = Quaternion(0.184239, 0.00694617, 0.121588, 0.975307)
-bones/9/rotation = Quaternion(0.364646, -0.00228319, 0.0412533, 0.930229)
-bones/12/rotation = Quaternion(-0.00518127, 0.0113169, 0.998718, 0.0490616)
-bones/13/rotation = Quaternion(-0.0687842, 0.0437229, 0.483172, 0.871723)
-bones/14/rotation = Quaternion(0.0623426, -0.00984669, -0.86293, 0.501367)
-bones/15/rotation = Quaternion(0.679537, -0.203127, 0.677587, 0.194537)
-bones/16/rotation = Quaternion(0.655438, -0.000604103, 0.00350887, 0.755241)
-bones/17/rotation = Quaternion(-0.721551, 0.00146083, 0.00131686, 0.692359)
-bones/18/rotation = Quaternion(0.505623, -0.495423, -0.498144, -0.500753)
-bones/19/rotation = Quaternion(-0.0726741, 0.00136197, -0.00302494, 0.99735)
-bones/22/rotation = Quaternion(0.611335, 0.00200563, 0.000106799, 0.791369)
-bones/23/rotation = Quaternion(-0.571747, 0.0346644, 0.0141529, 0.819576)
-bones/27/rotation = Quaternion(0.72746, -0.464376, 0.420535, -0.279833)
-bones/31/rotation = Quaternion(-0.382198, 0.23879, -0.750899, 0.482758)
+bones/0/rotation = Quaternion(-0.00419686, 0.00812679, 0.995329, 0.0961108)
+bones/1/rotation = Quaternion(-0.0462997, 0.033606, 0.399635, 0.914887)
+bones/2/rotation = Quaternion(0.0505334, -0.0231553, -0.64121, 0.765349)
+bones/3/rotation = Quaternion(0.66585, -0.242434, 0.664437, 0.237472)
+bones/4/rotation = Quaternion(0.812114, -0.000158621, 0.00248432, 0.583493)
+bones/5/rotation = Quaternion(-0.857013, 0.00113997, 0.0010245, 0.515292)
+bones/7/rotation = Quaternion(-0.0772058, 0.143323, -0.265276, 0.95033)
+bones/8/rotation = Quaternion(0.208023, 0.0609594, 0.000973701, 0.976222)
+bones/9/rotation = Quaternion(0.486584, 0.0160876, -0.0368803, 0.872707)
+bones/12/rotation = Quaternion(-0.0025819, 0.00977548, 0.986804, 0.161605)
+bones/13/rotation = Quaternion(-0.057843, 0.0406371, 0.399569, 0.913974)
+bones/14/rotation = Quaternion(0.0559973, -0.0182177, -0.741406, 0.668468)
+bones/15/rotation = Quaternion(0.694996, -0.139606, 0.693054, 0.131022)
+bones/16/rotation = Quaternion(0.681403, -0.000633059, 0.0034828, 0.7319)
+bones/17/rotation = Quaternion(-0.697723, 0.00142908, 0.00130833, 0.716365)
+bones/18/rotation = Quaternion(0.50664, -0.494399, -0.499161, -0.499724)
+bones/19/rotation = Quaternion(-0.0742804, 0.00140149, -0.00302556, 0.997232)
+bones/22/rotation = Quaternion(0.610451, 0.00198438, 9.86967e-05, 0.792052)
+bones/23/rotation = Quaternion(-0.572055, 0.0346374, 0.0141321, 0.819362)
+bones/27/rotation = Quaternion(0.697501, -0.457442, 0.4489, -0.320511)
+bones/31/rotation = Quaternion(-0.418244, 0.290443, -0.716205, 0.477247)
 
 [node name="BoneAttachment3D" parent="Nixie/Armature/Skeleton3D" index="1"]
-transform = Transform3D(0.996495, 0.00518753, 0.0834944, -0.0722388, 0.55669, 0.827574, -0.0421875, -0.830704, 0.555113, -0.891854, 1.54794, -0.0164824)
+transform = Transform3D(0.997188, -0.000498641, 0.0749433, -0.0619848, 0.5566, 0.828465, -0.0421266, -0.83078, 0.555004, -0.896777, 1.53808, -0.0165588)
 
 [node name="RaccoonBone" parent="Nixie/Armature/Skeleton3D" index="2"]
-transform = Transform3D(0.881247, -0.472612, 0.00647461, -0.0555778, -0.0900092, 0.994389, -0.469377, -0.876662, -0.105587, -0.631172, 0.945256, -0.00740173)
+transform = Transform3D(0.881625, -0.47195, -0.000792503, -0.0492125, -0.0936008, 0.994393, -0.469378, -0.876642, -0.105747, -0.630357, 0.93792, -0.00737243)
 
 [node name="AnimationTree" parent="Nixie" index="2"]
 parameters/Transition/current_state = "walk"
@@ -267,6 +267,9 @@ transform = Transform3D(-0.00523593, 0, 0.999986, 0, 1, 0, -0.999986, 0, -0.0052
 
 [node name="fence" parent="NavigationRegion3D" instance=ExtResource("5_300r6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
+
+[node name="CollisionShape3D" parent="NavigationRegion3D/fence/StaticBody3D" index="8"]
+transform = Transform3D(1.00386, 0, 0, 0, 1.00386, 0, 0, 0, 1.00386, 1, 0, -0.236)
 
 [node name="Nest" parent="." instance=ExtResource("4_jwxhb")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 1, 0, -35)

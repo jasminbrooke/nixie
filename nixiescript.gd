@@ -21,6 +21,7 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var label = $Label3D
 var bark_count = 0
 @export var SPEED = 6
+var interaction_processed = false
 
 func _ready():
 	if label:
@@ -37,6 +38,7 @@ func _unhandled_input(event):
 		spring_arm.rotation.x = clamp(spring_arm.rotation.x, -PI/4, PI/4)
 		
 func _physics_process(_delta):
+	label.text = str(statemachine.current_state)
 	if Input.is_action_just_pressed("bark"):
 		self.emit_signal("bark")
 		print("woof!")
@@ -72,6 +74,7 @@ func _physics_process(_delta):
 	
 # Check if the player is attempting to pick up the bunny
 	if Input.is_action_just_pressed("interact"):
+		print("Interact pressed")
 		anim_tree.set("parameters/Transition/transition_request", "pickup")
 		anim_tree.set("parameters/OneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 		var target_bunny: CharacterBody3D = null
@@ -85,11 +88,11 @@ func toggle_bunny_state(target_bunny):
 			pick_up_bunny(target_bunny)
 	else:
 		put_down_bunny()
-
 				
 func pick_up_bunny(target_bunny): 
-	carrying_bunny = target_bunny
-	self.emit_signal("bunny_picked_up")  # Emit the picked_up_signal
+	if carrying_bunny == null:
+		carrying_bunny = target_bunny
+		self.emit_signal("bunny_picked_up")  # Emit the picked_up_signal
 		
 func put_down_bunny():
 	self.emit_signal("bunny_put_down")

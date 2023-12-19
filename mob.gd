@@ -21,4 +21,3 @@ func initialize(_start_position, _player_position):
 func _physics_process(_delta):
 	label.text = str(statemachine.current_state)
 	scent.emitting = true
-
