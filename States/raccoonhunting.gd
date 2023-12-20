@@ -54,8 +54,12 @@ func physics_update(_delta):
 		# Check if there's a valid direction
 		if newVel.length_squared() > 0.0001:
 			rac.velocity = newVel
-						# Use look_at to make rac face the target
-			rac.look_at(Vector3(nextLoc.x, rac.global_transform.origin.y, nextLoc.z), Vector3.UP)
+			
+			# Set rotation based on the direction vector
+			rac.rotation.y = atan2(newVel.x, newVel.z)
+			
+			## Use look_at to make rac face the target
+			#rac.look_at(Vector3(-nextLoc.x, rac.global_transform.origin.y, -nextLoc.z), Vector3.UP)
 
 func _on_navigation_agent_3d_target_reached():
 	print("REACHED")

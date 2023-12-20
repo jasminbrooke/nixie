@@ -2,11 +2,12 @@ extends State
 class_name nixiewalk
 @onready var nixie = $"../.."
 var SPEED = 6
+@onready var anim_tree = $"../../AnimationTree"
 
 # Called when the node enters the scene tree for the first time.
 
 func enter():
-	pass # Replace with function body.
+	anim_tree.set("parameters/Transition/transition_request", "walk")
 
 func exit():
 	pass # Replace with function body.
