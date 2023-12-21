@@ -28,7 +28,6 @@ func exit():
 	world.add_child(bun)
 	bun.global_transform = bunny_attachment_point.global_transform
 	bun.global_transform.origin.y = 0
-	print("carried:", bun)
 
 func physics_update(_delta: float):
 	bun.global_transform = bunny_attachment_point.global_transform

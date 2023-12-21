@@ -3,11 +3,11 @@ class_name raccoonscared
 
 var ROTATION_THRESHOLD = 1
 var ROTATION_INTERPOLATION_SPEED = 0.2
-var SCARE_DISTANCE = 6.0  # Adjust this distance as needed
-var SCARE_SPEED = 8.0  # Adjust the speed at which bunnies run away
+var SCARE_DISTANCE = 6.0
+var SCARE_SPEED = 8.0
 @onready var anim_tree = $"../../AnimationTree"
 @onready var rac = self.get_parent().get_parent()
-@onready var player = get_node("../../../../World/Nixie")  # Use ".." to go up one level and then specify the node name
+@onready var player = get_node("../../../../World/Nixie")
 
 func enter():
 	anim_tree.set("parameters/Transition/transition_request", "run")

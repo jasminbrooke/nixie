@@ -3,15 +3,15 @@ class_name raccoonfight
 
 var ROTATION_THRESHOLD = 1
 var ROTATION_INTERPOLATION_SPEED = 0.2
-var FIGHT_DISTANCE = 6.0  # Adjust this distance as needed
-var FIGHT_SPEED = 8.0  # Adjust the speed at which bunnies run away
+var FIGHT_DISTANCE = 6.0
+var FIGHT_SPEED = 8.0
 @onready var anim_tree = $"../../AnimationTree"
 @onready var rac = self.get_parent().get_parent()
-@onready var player = get_node("../../../../World/Nixie")  # Use ".." to go up one level and then specify the node name
+@onready var player = get_node("../../../../World/Nixie")
 #var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var gravity = 50
 var desired_distance = 10
-var speed : float = 10.0  # Adjust the default speed as needed
+var speed : float = 10.0
 @onready var agent = $"../../NavigationAgent3D"
 @onready var target: Vector3
 @onready var scare_level: float = 0

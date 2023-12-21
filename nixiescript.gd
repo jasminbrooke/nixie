@@ -12,7 +12,7 @@ signal bunny_put_down
 @onready var anim_tree = $AnimationTree
 @onready var nest = get_node("../Nest")  # Load the scene resource
 const LERP_VAL = .15
-const BUNNY_INTERACTION_DISTANCE = 2  # Adjust this value as needed
+const BUNNY_INTERACTION_DISTANCE = 2
 const JUMP_VELOCITY = 5
 var default_layer = 0
 @onready var carrying_bunny: CharacterBody3D = null
@@ -56,7 +56,7 @@ func _physics_process(_delta):
 		velocity.y = JUMP_VELOCITY
 
 	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
+	# As good practice, replace UI actions with custom gameplay actions.
 	var input_dir = Input.get_vector("left", "right", "forward", "back")
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	direction = direction.rotated(Vector3.UP, spring_arm_pivot.rotation.y)
@@ -92,7 +92,7 @@ func toggle_bunny_state(target_bunny):
 func pick_up_bunny(target_bunny): 
 	if carrying_bunny == null:
 		carrying_bunny = target_bunny
-		self.emit_signal("bunny_picked_up")  # Emit the picked_up_signal
+		self.emit_signal("bunny_picked_up")
 		
 func put_down_bunny():
 	self.emit_signal("bunny_put_down")

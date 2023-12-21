@@ -3,7 +3,7 @@ class_name raccoonhunting
 
 @onready var anim_tree = $"../../AnimationTree"
 @onready var rac = self.get_parent().get_parent()
-@onready var player = get_node("../../../../World/Nixie")  # Use ".." to go up one level and then specify the node name
+@onready var player = get_node("../../../../World/Nixie")
 @onready var prey : CharacterBody3D
 @onready var bunnies_group = "mob"
 var speed = 3
@@ -46,7 +46,6 @@ func physics_update(_delta):
 	if distance_to_player < 6:
 		Transitioned.emit(self, "raccoonfight")
 		
-
 	if rac.position.distance_to(target) > 0.2:
 		var curLoc = rac.global_transform.origin
 		var nextLoc = agent.get_next_path_position()

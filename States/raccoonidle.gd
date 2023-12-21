@@ -2,8 +2,8 @@ extends State
 class_name raccoonidle
 
 @onready var anim_tree = $"../../AnimationTree"
-@export var speed = 1  # Adjust this value as needed
-@onready var player = get_node("../../../../World/Nixie")  # Use ".." to go up one level and then specify the node name
+@export var speed = 1
+@onready var player = get_node("../../../../World/Nixie")
 @onready var move_direction = Vector3(randf() * 2 - 1, 0, randf() * 2 - 1).normalized()
 @export var wander_time : float
 @export var velocity = Vector3.ZERO

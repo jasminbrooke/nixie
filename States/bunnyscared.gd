@@ -6,16 +6,15 @@ class_name bunnyscared
 @onready var anim_tree = $"../../bunny_model/AnimationTree"
 @onready var player = get_node("../../../../World/Nixie")
 @onready var rac = get_node("../../../../World/raccoon")
-# Called when the node enters the scene tree for the first time.
 var ROTATION_THRESHOLD = 1
 var ROTATION_INTERPOLATION_SPEED = 0.2
-var SCARE_DISTANCE = 6.0  # Adjust this distance as needed
-var SCARE_SPEED = 8.0  # Adjust the speed at which bunnies run away
+var SCARE_DISTANCE = 6.0 
+var SCARE_SPEED = 8.0
 @onready var scent = %scent
 @onready var scaredscent = %scared
 
 func _on_bunny_picked_up():
-	Transitioned.emit(self, "carried")  # Emit the transition signal for "carried" state
+	Transitioned.emit(self, "carried")
 	
 func exit():
 	scent.emitting = true

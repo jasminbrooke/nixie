@@ -1,6 +1,6 @@
 extends CharacterBody3D
 class_name bunny
-#signal bunny_picked_up
+
 @export var is_picked_up : bool = false
 @export var is_near_nest : bool = false
 @export var is_nested : bool = false
