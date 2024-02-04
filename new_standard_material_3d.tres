@@ -3,5 +3,9 @@
 [ext_resource type="Texture2D" uid="uid://cn5fmy8mg4axp" path="res://woodtexture.jpg" id="1_gxa5h"]
 
 [resource]
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.509804, 0.223529, 0.121569, 1)
 albedo_texture = ExtResource("1_gxa5h")
-uv1_scale = Vector3(2, 2, 2)
+normal_scale = 5.39
+uv1_scale = Vector3(0.2, 0.2, 0.2)
+uv1_triplanar = true

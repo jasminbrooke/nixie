@@ -15,10 +15,11 @@ func randomize_wander():
 	move_direction = Vector3(randf() * 2 - 1, 0, randf() * 2 - 1).normalized()
 	
 	wander_time = randi_range(4, 6)
-	if distance_to_player > 6:
+	if distance_to_player > 4:
 		Transitioned.emit(self, "raccoonhunting")
 
 func enter():
+	velocity = Vector3.ZERO
 	anim_tree.set("parameters/Transition/transition_request", "sniff")
 	randomize_wander()
 

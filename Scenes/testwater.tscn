@@ -1,0 +1,45 @@
+[gd_scene load_steps=10 format=3 uid="uid://dfnwtqea430wx"]
+
+[ext_resource type="Shader" uid="uid://cry8whxdkq285" path="res://Shaders/foamywater.tres" id="1_ktxv0"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_xuat8"]
+size = Vector2(100, 50)
+subdivide_width = 100
+subdivide_depth = 500
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_hp5bp"]
+frequency = 0.014
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_qima0"]
+seamless = true
+noise = SubResource("FastNoiseLite_hp5bp")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_eq6cv"]
+noise_type = 2
+frequency = 0.0034
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_dmiqx"]
+seamless = true
+seamless_blend_skirt = 0.16
+noise = SubResource("FastNoiseLite_eq6cv")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_30n44"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_3i7pf"]
+seamless = true
+noise = SubResource("FastNoiseLite_30n44")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fmpij"]
+render_priority = 0
+shader = ExtResource("1_ktxv0")
+shader_parameter/ColorParameter = Color(0.148003, 0.588787, 0.842615, 1)
+shader_parameter/tex_vtx_4 = SubResource("NoiseTexture2D_3i7pf")
+shader_parameter/tex_frg_3 = SubResource("NoiseTexture2D_dmiqx")
+shader_parameter/tex_frg_14 = SubResource("NoiseTexture2D_qima0")
+
+[node name="riverwaves" type="Node3D"]
+
+[node name="waveplane" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.644034, 0, 0, 0, 0.899189, 0, 0, 0, 0.184392, 0, 0, 0)
+mesh = SubResource("PlaneMesh_xuat8")
+surface_material_override/0 = SubResource("ShaderMaterial_fmpij")

@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://20ajqjwo7v4o"]
+
+[ext_resource type="PackedScene" uid="uid://1k1b7yuye8mq" path="res://Models/rivers.glb" id="1_1hq1r"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="rivers" parent="." instance=ExtResource("1_1hq1r")]

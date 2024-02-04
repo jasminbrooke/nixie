@@ -14,17 +14,18 @@ var SCARE_SPEED = 8.0
 @onready var scaredscent = %scared
 
 func _on_bunny_picked_up():
-	Transitioned.emit(self, "carried")
+	if bun.is_picked_up == true:
+		Transitioned.emit(self, "carried")
 	
 func exit():
 	scent.emitting = true
 	scaredscent.emitting = false
 	
 func enter():
-	scent.emitting = false
-	scaredscent.emitting = true
 	if not player.is_connected("bunny_picked_up", _on_bunny_picked_up):
 		player.bunny_picked_up.connect(_on_bunny_picked_up)
+	scent.emitting = false
+	scaredscent.emitting = true
 	if anim_tree:
 		anim_tree.active = true  # Activate the animation tree
 		anim_tree.set("parameters/Transition/transition_request", "run")
@@ -37,6 +38,7 @@ func physics_update(_delta: float):
 	else:
 		handle_scared_behavior(direction, _delta)
 		
+			
 func handle_scared_behavior(direction: Vector3, delta: float):
 	scent.emitting = false
 	var direction_away = -direction.normalized()

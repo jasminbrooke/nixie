@@ -21,6 +21,8 @@ func physics_update(_delta: float):
 		handle_scared_behavior(direction, _delta)
 		
 func handle_scared_behavior(direction: Vector3, delta: float):
+	if rac.is_on_wall():
+		Transitioned.emit(self, "raccoonidle")
 	var direction_away = -direction.normalized()
 	direction_away.y = 0
 	var desired_rotation = direction_away.angle_to(Vector3.UP)

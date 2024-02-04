@@ -1,0 +1,32 @@
+[gd_resource type="StandardMaterial3D" load_steps=5 format=3 uid="uid://c3aceqy7u0ocl"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_seh5t"]
+noise_type = 2
+frequency = 0.035
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_s7118"]
+seamless = true
+seamless_blend_skirt = 0.591
+as_normal_map = true
+bump_strength = 12.0
+noise = SubResource("FastNoiseLite_seh5t")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_d5o4q"]
+frequency = 0.0052
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_oficp"]
+as_normal_map = true
+noise = SubResource("FastNoiseLite_d5o4q")
+
+[resource]
+diffuse_mode = 3
+specular_mode = 1
+vertex_color_use_as_albedo = true
+albedo_color = Color(0, 0.211765, 0.113725, 1)
+albedo_texture = SubResource("NoiseTexture2D_s7118")
+normal_enabled = true
+normal_scale = 0.77
+normal_texture = SubResource("NoiseTexture2D_oficp")
+heightmap_scale = 8.685
+uv1_triplanar = true
+uv1_triplanar_sharpness = 0.183011

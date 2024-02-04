@@ -15,7 +15,8 @@ func enter():
 	bun.global_transform.origin.y = 0
 	scent.emitting = false
 	velocity = Vector3.ZERO
-
+	bun.is_picked_up = false
+	
 func exit():
 	pass
 

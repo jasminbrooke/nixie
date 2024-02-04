@@ -9,6 +9,7 @@ var velocity = Vector3.ZERO
 @onready var bunny_attachment_point = get_node("/root/World/Nixie/Armature/Skeleton3D/BoneAttachment3D/BunnyAttachmentPoint")
 
 func _on_bunny_put_down():
+	bun.is_picked_up = false
 	if bun.is_near_nest:
 		Transitioned.emit(self, "nested")
 	else:
@@ -23,13 +24,13 @@ func enter():
 	anim_tree.set("parameters/Transition/transition_request", "carried")
 	
 func exit():
-	bun.is_picked_up = false
+	player.bunny_put_down.disconnect(_on_bunny_put_down)  # Disconnect the signal
 	bun.get_parent().remove_child(bun)
 	world.add_child(bun)
 	bun.global_transform = bunny_attachment_point.global_transform
 	bun.global_transform.origin.y = 0
 
 func physics_update(_delta: float):
-	bun.global_transform = bunny_attachment_point.global_transform
+	#bun.global_transform = bunny_attachment_point.global_transform
 	velocity = Vector3.ZERO
 			

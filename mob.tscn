@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://1c2ee6w1yt6t"]
+[gd_scene load_steps=53 format=3 uid="uid://1c2ee6w1yt6t"]
 
 [ext_resource type="Script" path="res://mob.gd" id="1_w5fcu"]
 [ext_resource type="Script" path="res://StateMachine.gd" id="2_3dttr"]
@@ -7,15 +7,22 @@
 [ext_resource type="Script" path="res://States/bunnycarried.gd" id="5_xv1ia"]
 [ext_resource type="Script" path="res://States/bunnynested.gd" id="6_hcfjd"]
 [ext_resource type="SphereMesh" uid="uid://bx0ljp7dh42k0" path="res://1.tres" id="7_18uma"]
-[ext_resource type="Script" path="res://bunnyraycast.gd" id="8_2luu0"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_31nca"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cd6rk"]
+cull_mode = 1
+shading_mode = 0
+albedo_color = Color(0, 0, 0, 1)
+grow = true
+grow_amount = 0.05
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nryb5"]
 resource_name = "Material.001"
-cull_mode = 2
+next_pass = SubResource("StandardMaterial3D_cd6rk")
 albedo_color = Color(0.508007, 0.23406, 0.152867, 1)
-roughness = 0.5
+roughness = 0.84
+grow = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q2fh2"]
 resource_name = "Material.002"
@@ -33,7 +40,6 @@ roughness = 0.5
 resource_name = "Material.004"
 cull_mode = 2
 albedo_color = Color(0.631011, 0.465407, 0.436288, 1)
-roughness = 0.5
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_ebhe4"]
 resource_name = "bunny_model_Plane"
@@ -1071,12 +1077,11 @@ nodes/Transition/position = Vector2(620, 80)
 nodes/output/position = Vector2(800, 0)
 node_connections = [&"Blend2", 0, &"Animation", &"Blend2", 1, &"Animation 4", &"TimeScale", 0, &"Animation 6", &"TimeScale 2", 0, &"Animation 2", &"TimeScale 3", 0, &"Animation 5", &"Transition", 0, &"Blend2", &"Transition", 1, &"TimeScale 2", &"Transition", 2, &"Animation 3", &"Transition", 3, &"TimeScale", &"Transition", 4, &"TimeScale 3", &"output", 0, &"Transition"]
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_yh4nt"]
-
 [node name="Mob" type="CharacterBody3D" groups=["mob"]]
 transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 0, 0, 0)
 collision_layer = 2
 collision_mask = 1023
+input_capture_on_drag = true
 script = ExtResource("1_w5fcu")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -1085,7 +1090,6 @@ shape = SubResource("CapsuleShape3D_31nca")
 
 [node name="Label3D" type="Label3D" parent="."]
 transform = Transform3D(1, -2.53765e-15, 0, -1.4426e-15, 1, 0, 2.13163e-14, -2.21849e-22, 1, 0, 7.45058e-09, 0)
-visible = false
 offset = Vector2(0, 200)
 billboard = 1
 text = "Bunny"
@@ -1118,15 +1122,15 @@ bones/0/name = "Bone"
 bones/0/parent = -1
 bones/0/rest = Transform3D(1, 0, 0, 0, 0.947064, 0.321045, 0, -0.321045, 0.947064, 0, -0.156444, 0.0359289)
 bones/0/enabled = true
-bones/0/position = Vector3(0.0193361, -0.35125, 0.172995)
-bones/0/rotation = Quaternion(-0.228852, -0.00200822, 0.0003389, 0.973459)
+bones/0/position = Vector3(0.0106146, -0.236605, 0.0683344)
+bones/0/rotation = Quaternion(-0.176977, -0.00110301, 0.000182445, 0.984214)
 bones/0/scale = Vector3(1, 1, 1)
 bones/1/name = "Bone.001"
 bones/1/parent = 0
 bones/1/rest = Transform3D(1, 1.13687e-13, 1.90735e-06, 1.37028e-06, 0.695608, -0.718422, -1.32677e-06, 0.718422, 0.695608, 0, 0.717276, 8.3819e-09)
 bones/1/enabled = true
 bones/1/position = Vector3(0, 0.717276, 8.3819e-09)
-bones/1/rotation = Quaternion(0.386952, -0.0139406, -0.0536624, 0.920431)
+bones/1/rotation = Quaternion(0.387708, 0.0157565, 0.0566253, 0.919906)
 bones/1/scale = Vector3(1, 1, 1)
 bones/2/name = "Bone.011"
 bones/2/parent = 1
@@ -1140,7 +1144,7 @@ bones/3/parent = 2
 bones/3/rest = Transform3D(1, -1.90409e-06, 2.01876e-06, 1.90409e-06, -0.0584115, -0.998293, 2.01876e-06, 0.998293, -0.0584115, -5.68434e-14, 0.468244, 0)
 bones/3/enabled = true
 bones/3/position = Vector3(-5.68434e-14, 0.468244, 0)
-bones/3/rotation = Quaternion(0.767736, -0.00786429, 0.00395973, 0.640706)
+bones/3/rotation = Quaternion(0.736354, -0.00169067, 0.000852353, 0.676594)
 bones/3/scale = Vector3(1, 1, 1)
 bones/4/name = "Bone.006"
 bones/4/parent = 3
@@ -1161,21 +1165,21 @@ bones/6/parent = 0
 bones/6/rest = Transform3D(1, -7.10543e-15, 2.38419e-07, -1.55264e-07, 0.758884, 0.651226, -1.80932e-07, -0.651226, 0.758884, 0, 0.717276, 8.3819e-09)
 bones/6/enabled = true
 bones/6/position = Vector3(0, 0.717276, 8.3819e-09)
-bones/6/rotation = Quaternion(-0.476994, -0.00141108, -0.00193605, 0.878904)
+bones/6/rotation = Quaternion(-0.375716, -0.000247797, -0.000284501, 0.926735)
 bones/6/scale = Vector3(1, 1, 1)
 bones/7/name = "Bone.009"
 bones/7/parent = 6
 bones/7/rest = Transform3D(1, -1.47019e-07, 5.07252e-08, 1.47019e-07, 0.787243, -0.616643, 5.07251e-08, 0.616643, 0.787243, -4.44089e-15, 0.736091, 5.58794e-08)
 bones/7/enabled = true
 bones/7/position = Vector3(-4.44089e-15, 0.736091, 5.58794e-08)
-bones/7/rotation = Quaternion(0.489438, 0.00280804, 0.00278209, 0.872029)
+bones/7/rotation = Quaternion(0.362156, 0.00120133, 0.00127054, 0.932116)
 bones/7/scale = Vector3(1, 1, 1)
 bones/8/name = "Bone.003"
 bones/8/parent = -1
 bones/8/rest = Transform3D(-0.997929, 0.0472551, 0.0436529, -0.00572922, -0.74114, 0.671326, 0.0640765, 0.669686, 0.739875, 0, -0.156444, 0.0359289)
 bones/8/enabled = true
-bones/8/position = Vector3(0.0116825, -0.328551, 0.287584)
-bones/8/rotation = Quaternion(0.0288789, 0.359483, 0.932597, -0.0142035)
+bones/8/position = Vector3(0.00382221, -0.218442, 0.107486)
+bones/8/rotation = Quaternion(0.0288789, 0.359483, 0.932596, -0.0142035)
 bones/8/scale = Vector3(1, 1, 1)
 bones/9/name = "Bone.004"
 bones/9/parent = 8
@@ -1195,7 +1199,7 @@ bones/11/name = "Bone.007"
 bones/11/parent = -1
 bones/11/rest = Transform3D(1, 0, 0, 0, -0.828035, 0.560676, 0, -0.560676, -0.828035, 0, -0.156444, 0.0359289)
 bones/11/enabled = true
-bones/11/position = Vector3(0.0184861, -0.219379, 0.137395)
+bones/11/position = Vector3(0.0103865, -0.169585, 0.0559572)
 bones/11/rotation = Quaternion(0.956043, 0, 0, -0.293228)
 bones/11/scale = Vector3(1, 1, 1)
 bones/12/name = "Bone.008"
@@ -1203,7 +1207,7 @@ bones/12/parent = 11
 bones/12/rest = Transform3D(1, 0, 0, 0, -0.48533, -0.874331, 0, 0.874331, -0.48533, 0, 0.628615, 1.49012e-08)
 bones/12/enabled = true
 bones/12/position = Vector3(0, 0.628615, 1.49012e-08)
-bones/12/rotation = Quaternion(0.848575, 0.0017241, -0.00424052, 0.529056)
+bones/12/rotation = Quaternion(0.860491, -0.000542988, -0.00145031, 0.509464)
 bones/12/scale = Vector3(1, 1, 1)
 
 [node name="bunny" type="MeshInstance3D" parent="bunny_model/Armature_001/Skeleton3D"]
@@ -1245,11 +1249,3 @@ parameters/TimeScale/scale = 1.76
 parameters/Transition/current_state = "hop"
 parameters/Transition/transition_request = ""
 parameters/Transition/current_index = 0
-
-[node name="BunnyCast" type="ShapeCast3D" parent="."]
-transform = Transform3D(2.60064, -3.61538e-07, 1.3255e-07, 3.92686e-07, -1.04661e-07, -0.877836, 3.92686e-07, 2.39435, -3.83714e-08, 8.15766e-11, 0.638393, -0.000540257)
-shape = SubResource("SphereShape3D_yh4nt")
-target_position = Vector3(0, 0, 0)
-collision_mask = 1019
-collide_with_areas = true
-script = ExtResource("8_2luu0")

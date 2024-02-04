@@ -1,0 +1,168 @@
+[gd_resource type="Shader" format=3 uid="uid://dukpynq0c7hmi"]
+
+[resource]
+code = "shader_type spatial;
+render_mode blend_add, depth_draw_opaque, cull_back, diffuse_lambert, specular_schlick_ggx;
+
+uniform sampler2D tex_vtx_4;
+uniform vec4 ColorParameter : source_color = vec4(0.148003, 0.588787, 0.842615, 1.000000);
+uniform sampler2D depth_tex_frg_17 : hint_depth_texture;
+uniform sampler2D tex_frg_3;
+uniform sampler2D tex_frg_14;
+
+
+
+void vertex() {
+// Input:2
+	float n_out2p0 = TIME;
+
+
+// UVFunc:3
+	vec2 n_in3p1 = vec2(.05, .5);
+	vec2 n_out3p0 = vec2(n_out2p0) * n_in3p1 + UV;
+
+
+// Texture2D:4
+	vec4 n_out4p0 = texture(tex_vtx_4, n_out3p0);
+
+
+// Input:6
+	vec3 n_out6p0 = NORMAL;
+
+
+// VectorOp:8
+	vec3 n_in8p1 = vec3(0.20000, 0.20000, 0.20000);
+	vec3 n_out8p0 = n_out6p0 * n_in8p1;
+
+
+// Input:5
+	vec3 n_out5p0 = VERTEX;
+
+
+// MultiplyAdd:7
+	vec4 n_out7p0 = fma(n_out4p0, vec4(n_out8p0, 0.0), vec4(n_out5p0, 0.0));
+
+
+// Output:0
+	VERTEX = vec3(n_out7p0.xyz);
+
+
+}
+
+void fragment() {
+// ColorParameter:2
+	vec4 n_out2p0 = ColorParameter;
+
+
+// VectorOp:4
+	vec4 n_in4p1 = vec4(0.00000, 0.00000, 0.00000, 0.00000);
+	vec4 n_out4p0 = n_out2p0 + n_in4p1;
+
+
+// Input:21
+	float n_out21p0 = TIME;
+
+
+	float n_out17p0;
+// ProximityFade:17
+	float n_in17p0 = 0.50000;
+	{
+		float __depth_tex = texture(depth_tex_frg_17, SCREEN_UV).r;
+		vec4 __depth_world_pos = INV_PROJECTION_MATRIX * vec4(SCREEN_UV * 2.0 - 1.0, __depth_tex, 1.0);
+		__depth_world_pos.xyz /= __depth_world_pos.w;
+		n_out17p0 = clamp(1.0 - smoothstep(__depth_world_pos.z + n_in17p0, __depth_world_pos.z, VERTEX.z), 0.0, 1.0);
+	}
+
+
+// FloatFunc:18
+	float n_out18p0 = 1.0 - n_out17p0;
+
+
+// MultiplyAdd:28
+	float n_in28p1 = 0.50000;
+	float n_out28p0 = fma(n_out21p0, n_in28p1, n_out18p0);
+
+
+// FloatOp:27
+	float n_in27p1 = 4.00000;
+	float n_out27p0 = n_out28p0 * n_in27p1;
+
+
+// FloatFunc:20
+	float n_out20p0 = sin(n_out27p0);
+
+
+// FloatFunc:23
+	float n_out23p0 = abs(n_out20p0);
+
+
+// FloatOp:24
+	float n_out24p0 = n_out23p0 * n_out18p0;
+
+
+// FloatOp:25
+	float n_in25p1 = 24.00000;
+	float n_out25p0 = pow(n_out18p0, n_in25p1);
+
+
+// FloatOp:26
+	float n_out26p0 = n_out24p0 + n_out25p0;
+
+
+// Mix:29
+	vec3 n_in29p1 = vec3(1.00000, 1.00000, 1.00000);
+	vec3 n_out29p0 = mix(vec3(n_out4p0.xyz), n_in29p1, vec3(n_out26p0));
+
+
+// FloatConstant:15
+	float n_out15p0 = 0.800000;
+
+
+// FloatConstant:16
+	float n_out16p0 = 0.000000;
+
+
+// Input:6
+	float n_out6p0 = TIME;
+
+
+// UVFunc:5
+	vec2 n_in5p1 = vec2(1, 0);
+	vec2 n_out5p0 = vec2(n_out6p0 * .4) * n_in5p1 + UV;
+
+
+// Texture2D:3
+	vec4 n_out3p0 = texture(tex_frg_3, n_out5p0);
+
+
+// Input:13
+	float n_out13p0 = TIME;
+
+
+// UVFunc:12
+	vec2 n_in12p1 = vec2(-0.10000, -0.10000);
+	vec2 n_out12p0 = vec2(n_out13p0) * n_in12p1 + UV;
+
+
+// Texture2D:14
+	vec4 n_out14p0 = texture(tex_frg_14, n_out12p0);
+
+
+// VectorOp:10
+	vec4 n_out10p0 = n_out3p0 * n_out14p0;
+
+
+// FloatOp:30
+	float n_in30p1 = 1.25000;
+	float n_out30p0 = pow(n_out10p0.x, n_in30p1);
+
+
+// Output:0
+	ALBEDO = n_out29p0;
+	ALPHA = n_out15p0;
+	ROUGHNESS = n_out16p0;
+	EMISSION = vec3(n_out30p0);
+
+
+}
+"

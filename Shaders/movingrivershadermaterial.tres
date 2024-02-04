@@ -1,0 +1,35 @@
+[gd_resource type="ShaderMaterial" load_steps=8 format=3 uid="uid://cwodfu6diguer"]
+
+[ext_resource type="Shader" uid="uid://dukpynq0c7hmi" path="res://Shaders/movingwatershader.tres" id="1_bc5id"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_gdb55"]
+frequency = 0.0195
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_lm44o"]
+seamless = true
+noise = SubResource("FastNoiseLite_gdb55")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_yc8y4"]
+frequency = 0.0305
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_nfsrj"]
+seamless = true
+seamless_blend_skirt = 0.51
+noise = SubResource("FastNoiseLite_yc8y4")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_vnjr5"]
+noise_type = 2
+seed = 3
+frequency = 0.0053
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_y1h7x"]
+seamless = true
+noise = SubResource("FastNoiseLite_vnjr5")
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_bc5id")
+shader_parameter/ColorParameter = Color(0.148003, 0.588787, 0.842615, 1)
+shader_parameter/tex_vtx_4 = SubResource("NoiseTexture2D_y1h7x")
+shader_parameter/tex_frg_3 = SubResource("NoiseTexture2D_nfsrj")
+shader_parameter/tex_frg_14 = SubResource("NoiseTexture2D_lm44o")

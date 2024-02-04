@@ -2,10 +2,12 @@ extends State
 class_name nixiesneak
 @onready var nixie = $"../.."
 @onready var sneak_speed = 2
-
+@onready var snoof = $"../../Armature/Skeleton3D/Nixie/StaticBody3D/snoot/snoof"
 
 # Called when the node enters the scene tree for the first time.
 func enter():
+	nixie.speed_multiplier = .3
+	snoof.strength = 20
 	print("sneaking!!!!!")
 	pass # Replace with function body.
 
@@ -17,7 +19,7 @@ func update(_delta):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func physics_update(_delta):
-	nixie.SPEED = sneak_speed
+	#nixie.SPEED = sneak_speed
 	
 	if Input.is_action_just_released("sneak"):
 		Transitioned.emit(self, "nixiewalk")

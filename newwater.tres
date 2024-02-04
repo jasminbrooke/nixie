@@ -1,0 +1,8 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://clmafmg42m2sy"]
+
+[ext_resource type="Shader" uid="uid://bgf76pf28q3au" path="res://Shaders/visualwater.tres" id="1_j34hr"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_j34hr")
+shader_parameter/ColorParameter = Color(0.148003, 0.588787, 0.842615, 1)

@@ -1,0 +1,54 @@
+[gd_scene load_steps=9 format=3 uid="uid://dwjekin6155d8"]
+
+[ext_resource type="PackedScene" uid="uid://jq4cvgaafi3d" path="res://Models/mushrooms.glb" id="1_sc7a8"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p5del"]
+albedo_color = Color(1, 0.909804, 0.811765, 1)
+emission_enabled = true
+emission = Color(0, 0.156863, 0.831373, 1)
+
+[sub_resource type="Gradient" id="Gradient_um5r8"]
+offsets = PackedFloat32Array(0, 0.00363636, 1)
+colors = PackedColorArray(0.670588, 0.576471, 0.290196, 1, 0.670588, 0.576471, 0.290196, 1, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ihwft"]
+frequency = 0.0191
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_5dkkj"]
+seamless = true
+color_ramp = SubResource("Gradient_um5r8")
+noise = SubResource("FastNoiseLite_ihwft")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mlehm"]
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.670588, 0.576471, 0.290196, 1)
+albedo_texture = SubResource("NoiseTexture2D_5dkkj")
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mb2ti"]
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.345098, 0.176471, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6nyaf"]
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.647059, 0.552941, 0.427451, 1)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="mushrooms" parent="." instance=ExtResource("1_sc7a8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0872549, 0, -0.003268)
+
+[node name="mushroom3" parent="mushrooms" index="0"]
+transform = Transform3D(7.00782e-08, 0.462591, -0.389027, -0.587859, 7.20533e-08, -7.20533e-08, 1.75196e-08, 0.389027, 0.462591, 0.0486579, 0.360564, -1.17005)
+surface_material_override/0 = SubResource("StandardMaterial3D_p5del")
+
+[node name="mushroom2" parent="mushrooms" index="1"]
+transform = Transform3D(7.00782e-08, 0.462591, -0.389027, -0.587859, 7.20533e-08, -7.20533e-08, 1.75196e-08, 0.389027, 0.462591, -0.269115, 0.389127, -0.205886)
+surface_material_override/0 = SubResource("StandardMaterial3D_mlehm")
+
+[node name="mushroom1" parent="mushrooms" index="2"]
+transform = Transform3D(7.00782e-08, 0.462591, -0.389027, -0.587859, 7.20533e-08, -7.20533e-08, 1.75196e-08, 0.389027, 0.462591, -0.269115, 0.569208, 0.929876)
+surface_material_override/0 = SubResource("StandardMaterial3D_mb2ti")
+surface_material_override/1 = SubResource("StandardMaterial3D_6nyaf")
+
+[editable path="mushrooms"]
